@@ -1,0 +1,167 @@
+swagger: '2.0'
+info: 
+  version: 1.0.0 
+  title: Simple movie API 
+  description: An API to illustrate Swagger
+  
+schemes: 
+  - http
+host: localhost:8080
+paths: 
+  /movies:
+    get:
+      tags:
+        - Movies
+      operationId: getMovies  
+      description: Returns a list of movies     
+      parameters:
+        - name: fromYear
+          in: query 
+          type: integer
+          description: Movie was released in or after this year
+        - name: toYear
+          in: query
+          type: integer
+          description: Movie was realeas in or before this year
+      responses: 
+        200: 
+          description: Successful response
+          schema: 
+            type: array
+            items:
+              $ref: '#/definitions/Movie'
+    post:
+      tags:
+        - Movies
+      operationId: addMovie  
+      description: Add a new movie
+      parameters:
+        - name: AddMovie
+          in: body
+          schema:
+            type: object
+            required:
+              - title
+            properties:
+              title:
+                type: string
+              year:
+                type: integer
+              actors:
+                type: array
+                items:
+                  type: integer
+      responses:
+        200: 
+          description: Movie added
+        404:
+          description: Not found
+  /movies/{id}:
+    get:
+      tags:
+        - Movies
+      operationId: getMovie  
+      description: Returns single movie
+      parameters:
+        - $ref: '#/parameters/MovieId'
+      responses:
+        200: 
+         description: Successful response
+         schema:
+           $ref: '#/definitions/Movie'
+        404:
+          description: Not found
+    delete:
+      tags:
+        - Movies
+      operationId: deleteMovie  
+      description: Delete movie
+      parameters:
+        - $ref: '#/parameters/MovieId'
+      responses:
+        200:
+          description: Movie delted
+        404:
+          description: Movie not found
+    patch:
+      tags: 
+        - Movies
+      operationId: updateMovie  
+      description: Update movie
+      parameters: 
+        - $ref: '#/parameters/MovieId'
+        - name: UpdateMovie
+          in: body
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              year:
+                type: integer
+              actors:
+                type: array
+                items:
+                  type: integer
+      responses:
+        200:
+          description: Movie updated
+        404:
+          description: Movie not found      
+          
+  /actors:
+    get: 
+      tags:
+        - Actors
+      operationId: getActors    
+      description: Return a list of actors
+      responses:
+        200:
+          description: Successful response
+          schema: 
+              type: array
+              items:
+                $ref: '#/definitions/Actor'
+   
+          
+    
+
+parameters:
+   MovieId:
+      name: id
+      in: path
+      description: Movie's id
+      required: true
+      type: integer
+                  
+definitions:
+  Movie:
+    type: object
+    required:
+      - id
+      - title
+    properties:
+      id: 
+        type: integer
+      title:
+        type: string
+      year:
+        type: integer
+      actors:
+        type: array
+        items:
+          $ref: '#/definitions/Actor'
+  Actor:
+    type: object
+    required:
+      - id
+      - firstName
+      - lastName
+    properties:
+      id: 
+        type: integer
+      firstName:
+        type: string
+      lastName:
+        type: string
+        
