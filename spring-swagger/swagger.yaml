@@ -1,0 +1,62 @@
+---
+swagger: "2.0"
+info:
+  description: "This is a sample spec for our REST API"
+  version: "v1"
+  title: "Swagger spec for our REST API"
+  termsOfService: "http://www.testcompany.com/terms-and-conditions"
+  contact:
+    name: "Piotr Dros"
+    url: "http://www.blabla.com"
+    email: "piotrdros@blabla.com"
+  license:
+    name: "Company Licence"
+    url: "http://www.testcompany.com/licenses/LICENSE-2.0.html"
+host: "localhost:8080"
+tags:
+- name: "books"
+schemes:
+- "http"
+paths:
+  /books:
+    get:
+      tags:
+      - "books"
+      summary: "Adds book"
+      description: ""
+      operationId: "getBooks"
+      parameters: []
+      responses:
+        200:
+          description: "Book added"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Book"
+    post:
+      tags:
+      - "books"
+      summary: "Adds book"
+      description: ""
+      operationId: "addBook"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Book"
+      responses:
+        200:
+          description: "Book added"
+definitions:
+  Book:
+    type: "object"
+    properties:
+      isbn:
+        type: "string"
+      title:
+        type: "string"
+      authors:
+        type: "array"
+        items:
+          type: "string"
