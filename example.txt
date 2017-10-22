@@ -1,0 +1,17 @@
+{
+    "isbn": "978-83-240-4017-9",
+    "title": "Nowe przygody Kubusia Puchatka",
+    "authors": [
+      "Kate Saunders",
+	  "Brian Sibley",
+	  "Brian Sibley"
+    ]
+}
+  
+  
+{
+  "title": "Star Wars: A new Hope",
+  "actors": [
+    3,4
+  ]
+}

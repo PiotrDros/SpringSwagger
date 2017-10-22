@@ -61,8 +61,16 @@
           <apiSources>
             <apiSource>
               <springmvc>true</springmvc>
-              <locations>com.example.springswagger</locations>
-              <schemes>http</schemes>
+              <locations>
+                <location>
+                  com.example.springswagger
+                </location>
+              </locations>
+              <schemes>
+                <scheme>
+                  http
+                </scheme>
+              </schemes>
               <host>localhost:8080</host>
               <outputFormats>yaml</outputFormats>
               <info>

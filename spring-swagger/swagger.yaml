@@ -22,13 +22,13 @@ paths:
     get:
       tags:
       - "books"
-      summary: "Adds book"
+      summary: "Get books"
       description: ""
       operationId: "getBooks"
       parameters: []
       responses:
         200:
-          description: "Book added"
+          description: "Books retrieved"
           schema:
             type: "array"
             items:
