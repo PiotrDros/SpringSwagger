@@ -1,3 +1,4 @@
+build/
 bin/
 .settings/
 target/
@@ -7,3 +8,17 @@ target/
 
 /docs
 .swagger-codegen
+
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+
+
+### Gradle ###
+.gradle
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
