@@ -6,21 +6,13 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-tags:
-- name: "books"
 paths:
   /books:
     get:
-      tags:
-      - "books"
       summary: "Get books"
       description: ""
       operationId: "getBooks"
-      parameters:
-      - name: "filter"
-        in: "query"
-        required: false
-        type: "string"
+      parameters: []
       responses:
         200:
           description: "Books retrieved"
@@ -29,17 +21,10 @@ paths:
             items:
               $ref: "#/definitions/Book"
     post:
-      tags:
-      - "books"
       summary: "Adds book"
       description: ""
       operationId: "addBook"
-      parameters:
-      - in: "body"
-        name: "body"
-        required: false
-        schema:
-          $ref: "#/definitions/Book"
+      parameters: []
       responses:
         200:
           description: "Book added"

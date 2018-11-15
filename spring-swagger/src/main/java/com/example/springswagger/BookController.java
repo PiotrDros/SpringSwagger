@@ -1,6 +1,7 @@
 package com.example.springswagger;
 
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,10 +13,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@RestController
-@CrossOrigin(origins = "*")
-@Api(value = "books")
-public class BookController {
+@Component
+public class BookController implements IBookController {
 
     static class ListOfBooks extends ArrayList<Book> {
 
@@ -37,20 +36,14 @@ public class BookController {
 
     }
 
-    @ApiOperation(value = "Adds book")
-    @ApiResponses(value = {
-
-            @ApiResponse(code = 200, message = "Book added", response = Void.class) })
-    @RequestMapping(value = "books", method = RequestMethod.POST)
-    public void addBook(@RequestBody Book book) {
+    @Override
+    public void addBook(Book book) {
         books.add(book);
         System.out.println("Add book: " + book);
     }
 
-    @ApiOperation(value = "Get books")
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Books retrieved", response = ListOfBooks.class) })
-    @RequestMapping(value = "books", method = RequestMethod.GET)
-    public List<Book> getBooks(@RequestParam(required =  false) String filter) {
+    @Override
+    public List<Book> getBooks(String filter) {
         System.out.println("Get books");
 
         if (StringUtils.isEmpty(filter)) {
