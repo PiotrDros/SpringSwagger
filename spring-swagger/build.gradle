@@ -1,0 +1,67 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.0.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+// https://github.com/gigaSproule/swagger-gradle-plugin
+plugins {
+    id 'com.benjaminsproule.swagger' version '1.0.0'
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+
+
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+description = """spring-swagger"""
+
+sourceCompatibility = 1.8
+
+
+repositories {
+    mavenCentral()
+}
+
+
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.6.1'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.4.0'
+}
+
+
+swagger {
+    apiSource {
+        springmvc = true
+        locations = ['com.example.springswagger']
+        outputFormats = ["yaml"]
+        swaggerDirectory = "${project.rootDir}"
+        info {
+            title = "Swagger spec for our REST API"
+            version = 'v1'
+            license {
+                url = 'http://www.apache.org/licenses/LICENSE-2.0.html'
+                name = 'Apache 2.0'
+            }
+
+        }
+    }
+}
